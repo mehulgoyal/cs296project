@@ -41,7 +41,18 @@ namespace cs296
 {
   dominos_t::dominos_t()
   {
-    
+     b2Body* b1;
+{
+      b2EdgeShape shape;
+      shape.Set(b2Vec2(-90.0f, 0.0f), b2Vec2(90.0f, 0.0f));
+	
+      b2BodyDef bd;
+      b2FixtureDef fixdef;
+      fixdef.shape=&shape;
+      fixdef.friction=1.0;
+      b1 = m_world->CreateBody(&bd);
+      b1->CreateFixture(&fixdef);
+    }
 {
       b2BodyDef *bd1 = new b2BodyDef;
       bd1->type = b2_dynamicBody;
@@ -124,6 +135,87 @@ namespace cs296
       myjoint->Initialize(box1, box2, worldAnchorGround1, worldAnchorGround2, box1->GetWorldCenter(), box2->GetWorldCenter(), ratio);
       m_world->CreateJoint(myjoint);
     }
+{
+      b2PolygonShape shape;
+      shape.SetAsBox(2.0f, 0.25f);
+      
+      b2FixtureDef surface;
+      surface.shape = &shape;
+      surface.density = 0.0f;
+      surface.friction = 0.0f;
+      surface.restitution = 1.0f;
+	
+      b2BodyDef bd;
+      bd.position.Set(7.0f, 2.0f);
+      b2Body* ground = m_world->CreateBody(&bd);
+      ground->CreateFixture(&surface);
+    }
+
+{
+      b2PolygonShape shape;
+      shape.SetAsBox(0.25f,1.0f);
+      
+      b2FixtureDef surface;
+      surface.shape = &shape;
+      surface.density = 0.0f;
+      surface.friction = 0.0f;
+      surface.restitution = 1.0f;
+	
+      b2BodyDef bd;
+      bd.position.Set(10.0f, 3.0f);
+      b2Body* ground = m_world->CreateBody(&bd);
+      ground->CreateFixture(&surface);
+    }
+{
+      b2Body* basecurve1;
+      
+      float32 x = -18.0f;
+      float32 y = 7.0f;
+      for(int i = 0 ; i < 11 ; i++){
+		  b2EdgeShape curveEdgeShape;
+		  b2BodyDef curveDef;
+        curveEdgeShape.Set(b2Vec2(x,y) , b2Vec2(x+(i+2)*0.3 , y-(9-i)*0.1));
+        x = x+(i+2)*0.3;
+        y = y-(10-i)*0.1;
+        b2FixtureDef lowrest;
+        lowrest.shape= &curveEdgeShape;
+        lowrest.density= 0.0f;
+        lowrest.friction= 0.0f;
+        lowrest.restitution= 1.0f;
+        basecurve1 = m_world->CreateBody(&curveDef);
+        basecurve1->CreateFixture(&lowrest);
+      }
+    }
+{
+      b2PolygonShape shape;
+      shape.SetAsBox(1.0, 0.35f);
+      
+      b2FixtureDef surface;
+      surface.shape = &shape;
+      surface.density = 0.0f;
+      surface.friction = 0.2f;
+      surface.restitution = 0.1f;
+	
+      b2BodyDef bd;
+      bd.position.Set(21.7f, 13.4f);
+      b2Body* ground = m_world->CreateBody(&bd);
+      ground->CreateFixture(&surface);
+      
+      b2Body* spherebody;
+      b2CircleShape circle;
+      circle.m_radius = 1.0f;
+      b2FixtureDef ballfd;
+      ballfd.shape = &circle;
+      ballfd.density = 2000.0f;
+      ballfd.friction = 0.2f;
+      ballfd.restitution = 0.835f;
+      b2BodyDef ballbd;
+	  ballbd.type = b2_dynamicBody;
+	  ballbd.position.Set(21.7f, 13.9f);
+	  spherebody = m_world->CreateBody(&ballbd);
+	  spherebody->CreateFixture(&ballfd);
+	
+	}
 }
   sim_t *sim = new sim_t("Dominos", dominos_t::create);
 }
