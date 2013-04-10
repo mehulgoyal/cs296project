@@ -1,0 +1,82 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage[lmargin=1.0in, tmargin=1.3in, rmargin=1.0in, bmargin=1.3in]{geometry}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{natbib}
+\title{CS296 Project Report}
+\author{Raghav Gupta\\110100092\\raghav@cse.iitb.ac.in\and Mehul Goyal\\110050017\\mehulgoyal@cse.iitb.ac.in\and Himanshu Roy\\110050019\\himanshuroy@cse.iitb.ac.in}
+
+\begin{document}
+
+\maketitle
+\date
+%\tableofcontents
+
+\begin{section}{The Project- Rube Goldberg Machine Design in Box2D}
+
+\begin{subsection}{Our Rube Goldberg Machine Design}
+Here is our initial Rube Goldberg Machine design-\\
+\begin{center}\includegraphics[width=14cm, height=9cm]{doc/RUBEgoldberg122.png}\end{center}
+And here is a screenshot of the final simulation in Box2D-\\
+\begin{center}\includegraphics[width=14cm, height=11.5cm]{doc/simscreen.png}\end{center}
+Though, admittedly, the objects used by us in our simulation are fairly simple, what differentiates our design from the others around are the fact that we used a motor with a revolute joint-bound plank, which everyone has not done, and its use in the simulation (to hit the balls falling onto it) is a bit different.\\Also, in our simulation, at an instant, three tracks run parallel as there are three far-off objects triggering yet more events in three different places. The biggest challenge was to adjust body parameters (friction, restitution and density) so that the relative timing between each of these "tracks" was okay.\cite{box2dman}
+\end{subsection}
+\begin{subsection}{Brief explanation of simulation}
+The simluation starts at the top center, where a rotating plank sets off a ball rolling to its right and a domino collapse to its left.\\
+The left domino chain disturbs a hinged upright plank, which then rotates by 180 degrees and hits a ball, which collides with another one to its immediate right. The latter ball now is reflected and then guided to the ground level by a low-restitution curved surface, where it travels to the right part of the simulation.\\
+Meanwhile, the ball set in motion to the right reflects elastically from a slanting surface, and then collides with a train of small balls to its left. And now this ball, reflected again to the right, is brought to rest by a heavy hinged plank.\\
+Now this train of balls tips over slowly to the bottom, where we have a high-torque motor to hit these to the right and bottom. We have low-restitution curved surfaces on both these sides so that the balls do not bounce off arbitrarily.\\
+Now our small ball which was on the ground, moving right, collides with a long vertical hinged plank, generating an impulse, which causes (due to the presence of two balls and one plank in the middle to transfer the impulse) causes a really heavy ball to start tipping (very slowly) over into the right pulley bucket.\\
+But wait! Before that happens, our motor would be hitting all balls into place, so that they are slowly guided into the left pulley bucket before the aforementioned heavy ball falls into the right bucket.\\
+At the end, we have the heavy ball finally falling into the right pulley bucket, which brings the latter down, and the left bucket with multiple small balls receives a jerk up.\cite{klepkolen}
+\end{subsection}
+\begin{subsection}{Changes made from the original simulation}
+Visibly, there are a few minor changes from the original simulation design.\\
+There are two extra curved guides- one at the bottom and one to the right. Both of these are to facilitate the movement of the balls as intended.\\
+Static blocks have been added around the pulley boxes for stability.\\
+The curved pipe at the left end of the setup has been omitted, and one of the three balls on top of the platform just above it has been left out.\\
+One additional ball has been added at the right end.\\
+And, while our initial goal was just to raise the left pulley bucket, we changed it to raising the right pulley bucket, since the perfect relative timing for all the tracks for the former to happen seemed unlikely to achieve.
+\end{subsection}
+\begin{subsection}{Profiling with gprof}
+We profiled our simulation code under different conditions namely different number of iterations, different levels of optimization flags and difference b/w release and debug versions, using gprof. Following are the conclusions drawn from the caller-callee graph generated-
+\end{subsection}
+\begin{subsection}{Analysis}
+The caller callee graph for the debug mode goes here-
+\begin{center}\includegraphics[height=1.3cm, width=15.5cm]{doc/output1.png}\end{center}
+The function SolvedVelocityConstraints() is using the most amount of time which is \(\approx 42\%\) in release mode and \(\approx 12.5\%\) in debug mode. And when the iteration numbers are changed, this function blows up the most. These are the areas where we should be looking to optimize our code manually.
+Some functions such as operator*, operator+, operator- and Update(b2ContactListener *), consume time in the debug version but not in the release version; the -O3 flag apparently optimizes these functions among others. The code can be optimized here as well.\\
+\end{subsection}
+\begin{subsection}{Plot 1- Loop and average step times (over reruns) vs iteration values}
+The \textbf{loop time} expectedly increases with the number of iterations.\\ However, there was a sudden change in the slope of the graph at iteration value \(\approx\) 30, after which point the graph slope decreases. A possibility is that this process is taken by the processor to be higher priority for larger iteration values, hence the slope decrease.\\ Upon loading the system, the only notable change observed was the significant increase in the loop time values, and that the sudden slope change at iteration \(\approx\) 30 softened.\\\\
+The \textbf{average step time} registers only a slight decrease with increasing iteration value. Again, a possible explanation is the same- higher load means higher priority process for system. Upon loading the system, only the times increase, everything else remaining similar.
+\begin{center}\includegraphics[height=1.3cm, width=15.5cm]{plots/g03_project_plot01.png}\end{center}
+\end{subsection}
+\begin{subsection}{Plot 2- Step time, collision time, velocity and position update times (averaged over reruns) vs iteration values}
+In similar fashion, all these quantities report a slight decrease with increasing iteration value, owing to the same tendency to allocate more resources to heavier processes. Velocity and position update time graphs had an abrupt slope change at iteration value \(\approx\) 30, as in plot 1.
+\begin{center}\includegraphics[height=1.3cm, width=15.5cm]{plots/g03_project_plot02.png}\end{center}
+\end{subsection}
+\begin{subsection}{Plot 3- Average step time and loop time vs rerun number}
+During every rerun, the same processes are run, with about the same background load (which is held constant). Each graph here is largely a horizontal line with minor deviations. And these times increase a bit with more load on the system.
+\begin{center}\includegraphics[height=1.3cm, width=15.5cm]{plots/g03_project_plot03.png}\end{center}
+\end{subsection}
+\begin{subsection}{Plot 4- Step time, collision time, velocity and position update times (averaged over iterations) vs rerun values}
+Each rerun returns more or less the same value for each aforementioned quantity, with minor deviations. And these times increase with more system load.
+\begin{center}\includegraphics[height=1.3cm, width=15.5cm]{plots/g03_project_plot04.png}\end{center}
+\end{subsection}
+\begin{subsection}{Plot 5- Step time (averaged over reruns) with error bars versus iteration value}
+As we've seen before, step time decreases with iteration value, since heavier jobs seem to receive more priority. In addition, we observe that the length of the error bars decreases as we increase the number of iteration values.\\This may be because with larger iteration values, we are taking a larger sample i.e. more data points, and every rerun must have the same expected value for the step time, hence more points \(\Rightarrow\) lower standard deviation of the data and hence a shorter error bar.
+\begin{center}\includegraphics[height=1.3cm, width=15.5cm]{plots/g03_project_plot05.png}\end{center}
+\end{subsection}
+\begin{subsection}{Plot 6- Histogram and cumulative frequency graph for step time}
+The heights of the histogram frequency bars, starting from step times \(\approx\) 0, increases largely steadily, till a peak is reached, beyond which the decrease in the height of the frequency bars resembles exponential decay.\\The aforementioned peak is also the point where the slope of the cumulative frequency graph is the steepest.
+\begin{center}\includegraphics[height=1.3cm, width=15.5cm]{plots/g03_project_plot06.png}\end{center}
+\end{subsection}
+\end{section}
+\bibliographystyle{plain}
+\bibliography{refs}
+\end{document}
