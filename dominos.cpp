@@ -117,7 +117,7 @@ namespace cs296
     //The two spheres- ek aur ghusana hai left mein
     /*!
       Two spheres are kept on the horizontal platform, which are knocked by the top-left pivoted-platform.
-      Variable of type "b2Body" defines the object "spherebody".
+      Variable of type <b>b2Body</b> defines the object "spherebody".
       The fixtures "ballfd" and "ballfd2", shape="circle" and radius="0.5" are attached to "spherebody".
       Attributes of fixture "ballfd" are : density=250, friction=0.9, restitution=0.8, position=(-39.0,30.9).
       Attributes of fixture "ballfd2" are : density=595, friction=0.9, restitution=0.8, position=(-26.0,30.9).
@@ -169,15 +169,15 @@ namespace cs296
     }
     //vertical frictionless hinge
     /*!
-      Variable "bd" is a dyanamic "b2BodyDef" object, with type="b2_dynamicBody".
-      Position of "bd" is (-40.6,33.9), and its used to create a "b2Body" object, where body1 is the pointer.
-      A fixture "fd" is defined using "b2FixtureDef" with attributes : shape="b2PolygonShape", density=150.0.
+      Variable "bd" is a dyanamic <b>b2BodyDef</b> object, with type <b>b2_dynamicBody</b>.
+      Position of "bd" is (-40.6,33.9), and its used to create a <b>b2Body</b> object, where body1 is the pointer.
+      A fixture "fd" is defined using <b>b2FixtureDef</b> with attributes : shape=<b>b2PolygonShape</b>, density=150.0.
       Fixture "fd" is attached to "body1" defined above.
-      A fixture "ballfd" is defined using "b2FixtureDef"  with attributes : shape="circleshape"(type="b2CircleShape",radius=0.2),
+      A fixture "ballfd" is defined using <b>b2FixtureDef</b>  with attributes : shape="circleshape"(type=<b>b2CircleShape</b>,radius=0.2),
            density=1000.0, friction=0.0, restitution=1.0.
-      Fixture "ballfd" is attached to body pointed by "body2", created by passing body "bd2"(type="b2BodyDef") to "CreateBody()" function.
+      Fixture "ballfd" is attached to body pointed by "body2", created by passing body "bd2"(type=<b>b2BodyDef</b>) to "CreateBody()" function.
       The position of object corresponding to "body2" is (-40.6,38.0).
-      Finally, both bodies corresponding to "body1" and "body2" are connected by a revolute joint "jointDef"(type="b2RevoluteJointDef") 
+      Finally, both bodies corresponding to "body1" and "body2" are connected by a revolute joint "jointDef"(type=<b>b2RevoluteJointDef</b>) 
           with corresponding anchors at (0.0,-2.9) and (0.0) .
     */
     {
@@ -221,9 +221,9 @@ namespace cs296
     }
     //platform for the spheres
     /*!
-      The platform for the spheres is created by passing the body "bd"(defined using "b2BodyDef") object to the "m_world->CreateBody()" function, 
-          which attaches it to the ground object pointed by "ground"(type="b2Body").
-      A Fixture "surface" is created which is a box("b2PolygonShape" pbject shape) of dimensions (9.5,0.25) {formed using "SetAsBox" function},
+      The platform for the spheres is created by passing the body "bd"(defined using <b>b2BodyDef</b>) object to the <b>m_world->CreateBody()</b> function, 
+          which attaches it to the ground object pointed by "ground"(type=<b>b2Body</b>).
+      A Fixture "surface" is created which is a box(<b>b2PolygonShape</b> pbject shape) of dimensions (9.5,0.25) {formed using "SetAsBox" function},
           density=0.0,friction=0.0,restitution=1.0 .
       Fixture "surface" is fixed to the body object pointed by "ground" .
     */
@@ -244,9 +244,9 @@ namespace cs296
     }    
     //reflector for ball
     /*!
-      For reflection the balls, a fixed object is created by passing the "b2BodyDef" object "bd" to the ground object pointed by "ground".
+      For reflection the balls, a fixed object is created by passing the <b>b2BodyDef</b> object "bd" to the ground object pointed by "ground".
       The position of "bd" is (-13.7,27.4) .
-      Also the fixture "reflect" is defined using "b2FixtureDef" with attributes: shape {"b2PolygonShape" object, dimensions= (0.3,4.25) using "SetAsBox()" function},
+      Also the fixture "reflect" is defined using <b>b2FixtureDef</b> with attributes: shape {<b>b2PolygonShape</b> object, dimensions= (0.3,4.25) using <b>SetAsBox()</b> function},
           density=0.0, friction=0.0, restitution=1.0  .
       The fixture "reflect" is then attached to the ground object pointed using "ground" .
     */
@@ -269,9 +269,9 @@ namespace cs296
     /*!
       Here we create the curved surface by using multiple platform object with proper dimensions and alignments. 
       Basically, we create the curved surfaces using small lines spaced closely {using a "for" loop}so that the curves are approximated to curves made from points.
-      Firstly, we define a body using "b2Body" pointed by "basecurve1", then we define a shape using curveEdgeShape {type "b2EdgeShape"}.
-      The object curveDef, type "b2BodyDef" is used to create a body object in the world by passing to "basecurve1".
-      The fixture "lowrest" is defined ,using "b2FixtureDef", locally in each iteration with attributes : 
+      Firstly, we define a body using <b>b2Body</b> pointed by "basecurve1", then we define a shape using curveEdgeShape {type <b>b2EdgeShape</b>}.
+      The object curveDef, type <b>b2BodyDef</b> is used to create a body object in the world by passing to "basecurve1".
+      The fixture "lowrest" is defined ,using <b>b2FixtureDef</b>, locally in each iteration with attributes : 
           shape="curveEdgeShape" {whose parameters are modified each iteration governed by (x,y) values in that iteration} , friction=0.0, 
           restitution=0.0  {restitution=0.0 helps to make a smooth movement of ball across the curve} .
     */
@@ -299,15 +299,15 @@ namespace cs296
     //motor to set in motion
     /*!
       Here we create the top motor-driven platform which initializes the simulation.
-      The object "bd", defined using "b2BodyDef" with position (-18.99,41.9) is passed to the world and the body object, pointed by "body1", is formed .
-      Then, a fixture is created with pointer "fd" and attributes : shape="b2PolygonShape" object created using "SetAsBox()" dimensions=(0.2,3.15), 
+      The object "bd", defined using <b>b2BodyDef</b> with position (-18.99,41.9) is passed to the world and the body object, pointed by "body1", is formed .
+      Then, a fixture is created with pointer "fd" and attributes : shape=<b>b2PolygonShape</b> object created using <b>SetAsBox()</b> dimensions=(0.2,3.15), 
           density=455.0 .
       The fixture "fd" is attached to "body1" .
-      Another body with pointer "body2" is created by passing object "bd2" {defined using "b2BodyDef"}, position = (-18.99,41.9) .
-      The Fixture "ballfd" is defined using "b2FixtureDef" and attributes : shape="circleShape" {type="b2CircleShape", radius=0.2}, 
+      Another body with pointer "body2" is created by passing object "bd2" {defined using <b>b2BodyDef</b>}, position = (-18.99,41.9) .
+      The Fixture "ballfd" is defined using <b>b2FixtureDef</b> and attributes : shape="circleShape" {type=<b>b2CircleShape</b>, radius=0.2}, 
           density=38.0, friction= 0.0, restitution=1.0 .
       The Fixture "ballfd" is then is attached to the body referenced by "body2".
-      Finally a revolute joint, type="b2RevoluteJointDef" is created with its attributes as : {first body}bodyA="body1", {second body}bodyB="body2", 
+      Finally a revolute joint, type=<b>b2RevoluteJointDef</b> is created with its attributes as : {first body}bodyA="body1", {second body}bodyB="body2", 
           {anchor for body1} localAnchorA=(0.0,0.0), {anchor for body2} localAnchorA=(0,0), {maximum torque of the attached motor} maxMotorTorque=10000.0,
           {maximum motor speed} motorSpeed=-236.0, {enabler of the motor, motor starts as soon as its set to true} enableMotor=true, 
           {whether the two bodies connected by the revolute joint are allowed to collide} collideConnected=false .
@@ -354,27 +354,27 @@ namespace cs296
     
     }
     
-    //right platform with heavy ball, the slants
-    /*!
-      Firstly a Fixture "surface", type "b2FixtureDef" is defined, its attributes are : shape = "b2PolygonShape" object 
-          "shape" {formed using SetAsBox(), dimensions=(3.5,0.25)}, density = 0.0, friction=0.0, restitution=1.0 .
-      Then a "b2BodyDef" object is passed to the ground object, pointed by "ground" . Its dimensions are (-12.2,39.4) .
-      The fixture "surface" is also attached to the ground object .
-      A body with pointer "spherebody", type "b2Body" is defined and after that a "b2CircleShape" object defines a shape object "circle" with radius=0.7 .
-      A Fixture "ballfd", type "b2FixtureDef" is defined and passed the following attributes : shape = "circle", density=250.0, friction=0.2, restitution=0.835 .
-      Then the body object represented by "spherebody" is assigned a body object "ballbd", type "b2BodyDef" with type="b2_dynamicBody" {dynamic body type},
+    //right platform with heavy ball, the slants . 
+    /*!<h3>Right platform with the heavy ball. </h3>
+      <p>Firstly a Fixture "surface", type <b>b2FixtureDef</b> is defined, its attributes are : shape = <b>b2PolygonShape</b> object 
+          <b>shape</b> which is formed using SetAsBox() with dimensions=(3.5,0.25), density = 0.0, friction=0.0, restitution=1.0 .<br/>
+      Then a <b>b2BodyDef</b> object is passed to the ground object, pointed by "ground" . Its dimensions are (-12.2,39.4) .<br/>
+      The fixture "surface" is also attached to the ground object .<br/>
+      A body with pointer "spherebody", type <b>b2Body</b> is defined and after that a <b>b2CircleShape</b> object defines a shape object "circle" with radius=0.7 .
+      A Fixture "ballfd", type <b>b2FixtureDef</b> is defined and passed the following attributes : shape = "circle", density=250.0, friction=0.2, restitution=0.835 .
+      Then the body object represented by "spherebody" is assigned a body object "ballbd", type <b>b2BodyDef</b> with type=<b>b2_dynamicBody</b> {dynamic body type},
           position=(-15.7,41.1) .
       Also the fixture "ballfd" is assigned to the body-object represented by "spherebody" .
-      After that body object represented by "slant", type "b2Body" is defined, then an edge "slantShape", type "b2EdgeShape" is defined,
+      After that body object represented by "slant", type <b>b2Body</b> is defined, then an edge "slantShape", type <b>b2EdgeShape</b> is defined,
            with end points : (-8.7,39.4) and (23,35.4) {where points are represented by "b2Vec"} .
-      This "b2EdgeShape" object "slantShape" is used while defining the Fixture "slantfric", type "b2FixtureDef" and attributes : shape="slantShape", 
+      This <b>b2EdgeShape</b> object "slantShape" is used while defining the Fixture "slantfric", type <b>b2FixtureDef</b> and attributes : shape="slantShape", 
           density = "0.0", friction="0.3", restitution=0.5 .
       This Fixture is attached to the body object "slant" .
-      Then the body object represented by "slant2", type "b2Body" is defined, then an edge "slantShape2", type "b2EdgeShape" is defined,
+      Then the body object represented by "slant2", type <b>b2Body</b> is defined, then an edge "slantShape2", type <b>b2EdgeShape</b> is defined,
            with end points : (32,39.4) and (26.8,25.4) {where points are represented by "b2Vec"} .
-      This "b2EdgeShape" object "slantShape2" is used while defining the Fixture "slantfric2", type "b2FixtureDef" and attributes : shape="slantShape2", 
+      This <b>b2EdgeShape</b> object "slantShape2" is used while defining the Fixture "slantfric2", type <b>b2FixtureDef</b> and attributes : shape="slantShape2", 
           density = "0.0", friction="0.3", restitution=0.5 .
-      This Fixture is attached to the body object "slant2" .
+      This Fixture is attached to the body object "slant2" .</p>
     */
     {
       b2PolygonShape shape;
@@ -431,17 +431,20 @@ namespace cs296
     }  
     
     //platform holding train of spheres to be triggered, and the train of spheres
-    /*!
-      The Objects defined for the above system are : 
-          "shape" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (9.0,0.25) }, 
-          "bd" {type="b2BodyDef", defines a body-object with position(9.0,27.9)}, 
-          "spherebody" {pointer of type="b2Body"}, 
-          "circle" {type="b2CircleShape", defines a shape type circle and radius="0.5"}, 
-          "ballfd" {type="b2FixtureDef", defines a fixture with attributes : shape="circle", density=150.0, friction=0.0, restitution=0.0}
-          "ballbd" {type="b2BodyDef", type="b2_dynamicBody", used to define a dynamic body locally for each iteration}
-      The body object "bd" is assigned to "ground" and also a fixture is fixed to "ground" with shape "shape" .
+    /*!<h3>Platform holding train of spheres to be triggered, and the train of spheres</h3>
+      Here we create a train of 10 spheres kept on the platform .<br/>
+      The object "ballbd" defines the body for a sphere and is passed to the world to create body.<br/>
+      The object "ballfd" is a fixture for a sphere with body definition given by "ballbd".<br/> 
+      Here is a description of objects defined for this system :
+          "shape" {type=<b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (9.0,0.25) . <br/>
+          "bd" :type=<b>b2BodyDef</b>, defines a body-object with position(9.0,27.9) . <br/>
+          "spherebody" :pointer of type <b>b2Body</b> defines the main body object. <br/>
+          "circle" : type <b>b2CircleShape</b>, defines a shape type circle and radius=0.5 <br/>
+          "ballfd" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="circle", density=150.0, friction=0.0, restitution=0.0 .<br/>
+          "ballbd" : type <b>b2BodyDef</b>, type <b>b2_dynamicBody</b>, used to define a dynamic body locally for each iteration .<br/>
+      The body object "bd" is assigned to "ground" and also a fixture is fixed to "ground" with shape : "shape" .<br/>
       Also "ballbd" is used to assign a ball to the body object "spherebody", each time the iteration is run, and at the same time 
-          fixture "ballfd" is also attached to it.
+          fixture "ballfd" is also attached to it.<br/>
     */
     {
 		b2PolygonShape shape;
@@ -476,21 +479,23 @@ namespace cs296
 	}
 	
 	//high-torque motor to force the balls in the bucket
-  /*!
-    The Objects defined for the above system are : 
-          "shape" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (0.2,3.99) }, 
-          "bd" {type="b2BodyDef", type="b2_dynamicBody", defines a body-object with position(-5.5, 14.0)}, 
-          "body1" {pointer of type="b2Body" , assigned the body created by passing "bd" to "m_world->CreateBody()"} 
-          "fd" {type="b2FixtureDef", defines a fixture with attributes : shape="shape", density=500.0}
-          "circleShape" {type="b2CircleShape", defines a shape type circle and radius="0.2"}, 
-          "bd2" {type="b2BodyDef", type="b2_dynamicBody", defines a body-object with position(-5.5, 16.0)}, 
-          "body2" {pointer of type="b2Body" , assigned the body created by passing "bd2" to "m_world->CreateBody()"} 
-          "ballfd" {type="b2FixtureDef", defines a fixture with attributes : shape="circleShape", density=38.0, friction=0.0, restitution=1.0}
-          "jointDef" {type="b2RevoluteJointDef", its a revolute joint with attributesa as : bodyA="body1", bodyB="body2", 
-              {for body1}localAnchorA=(0.0f, 0.0f) , {for body2}localAnchorB=(0.0, 0.0) , {max torque allowed for motor} maxMotorTorque=10000.0,
-              {max motor speed} motorSpeed=300.0, {collision between connected bodies allowing flag} collisionConnected=false, {motor enabler} motorenable=true}
-    The Fixture "fd" is attached to "body1" and the Fixture "ballfd" is attached to "body2".
-    Finally the motor-driven system with revolute-joint  is created by passing "jointDef" to m_world->CreateJoint() .
+  /*!<h3> High Torque motor driven revolving plank for guiding the train of spheres .</h3> 
+    <p>This is a system consisiting of a motor driven platform which directs the train of balls, coming down the curve, to the bucket or the left open box .<br/>
+    The platfrom "body1" is hinged with a small circle "body2", and the motor appplies torque which increases its speed upto its maxspeed .<br/> 
+    Here is a description of objects defined for this system 
+          "shape" : type <b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (0.2,3.99) .<br/>
+          "bd" : type <b>b2BodyDef</b>, type=<b>b2_dynamicBody</b>, defines a body-object with position(-5.5, 14.0) .<br/>
+          "body1" : pointer of type=<b>b2Body</b> , assigned the body created by passing "bd" to <b>m_world->CreateBody()</b> .<br/>
+          "fd" {type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="shape", density=500.0 .<br/>
+          "circleShape" : type <b>b2CircleShape</b>, defines a shape type circle and radius="0.2" .<br/>
+          "bd2" : type <b>b2BodyDef</b>, type=<b>b2_dynamicBody</b>, defines a body-object with position(-5.5, 16.0) .<br/>
+          "body2" : pointer of type <b>b2Body</b> , assigned the body created by passing "bd2" to <b>m_world->CreateBody()</b> <br/>
+          "ballfd" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="circleShape", density=38.0, friction=0.0, restitution=1.0 <br/>
+          "jointDef" : type <b>b2RevoluteJointDef</b>, its a revolute joint with attributesa as : bodyA="body1", bodyB="body2" .<br/>
+              anchor for body1 : localAnchorA=(0.0f, 0.0f) , anchor for body2 : localAnchorB=(0.0, 0.0) , max torque allowed for motor : maxMotorTorque=10000.0 .<br/>
+              max motor speed :  motorSpeed=300.0, collision allowing flag : collisionConnected=false, motor enabler starts motor when enabled: motorenable=true .<br/>
+    The Fixture "fd" is attached to "body1" and the Fixture "ballfd" is attached to "body2".<br/>
+    Finally the motor-driven system with revolute-joint  is created by passing "jointDef" to m_world->CreateJoint() .<br/></p>
   */
     {
       b2PolygonShape shape;
@@ -533,16 +538,18 @@ namespace cs296
     
     }
     //pulley guide 1
-    /*!
-      The Objects defined for the above system are : 
-          "curveEdgeshape" {type="b2EdgeShape", "Set()" used to set end-points in each iteration according to the curve}, 
-          "curveDef" {type="b2BodyDef", type="b2_dynamicBody", defines a body-object}, 
-          "basecurve1" {pointer of type="b2Body" , assigned a body each iteration, created by passing "curveDef" to "m_world->CreateBody()"} 
-          "lowrest" {type="b2FixtureDef", its a fixture defined each iteration, assigned : shape = "curveEdgeShape", density=0, friction=3, restitution=-0.8}
-      Here the end points of the edge "curveEdgeShape" are set every iteration and (x,y) are updated each iteration so that a smooth curve is obtained .
+    /*!<h3>Curved guiding surface, below the "plank+train of spheres system"</h3>
+    <p>The falling train of spheres are guided towards another curved surface .<br/>
+      The curve is constructed using multiple small edges/lines to give a approximted curve with restitution=0 so that the direction change is uniform.<br/> 
+      Here is a description of objects defined for this system : 
+          "curveEdgeshape" : type=<b>b2EdgeShape</b>, "Set()" used to set end-points in each iteration according to the curve .<br/> 
+          "curveDef" : type=<b>b2BodyDef</b>, type=<b>b2_dynamicBody</b>, defines a body-object . <br/>
+          "basecurve1" : pointer of type=<b>b2Body</b> , assigned a body each iteration, created by passing "curveDef" to <b>m_world->CreateBody()</b> .<br/>
+          "lowrest" : type=<b>b2FixtureDef</b>, its a fixture defined each iteration, assigned : shape = "curveEdgeShape", density=0, friction=3, restitution=-0.8 .<br/>
+      Here the end points of the edge "curveEdgeShape" are set every iteration and (x,y) are updated each iteration so that a smooth curve is obtained .<br/>
       The body-object "curveDef" and fixture "lowrest" are assigned to the body "basecurve1" each iteration, basically adding a small line,
-           with slightly different slope and length with end points:(x,y) and [x-(i+2)*0.1 , y-(9-i)*0.3], so that a smooth curve is obtained .
-      The curve is formed using 10 lines.
+           with slightly different slope and length with end points:(x,y) and [x-(i+2)*0.1 , y-(9-i)*0.3], so that a smooth curve is obtained .<br/>
+      The curve is formed using 10 lines.<br/>
     */
     {
       b2Body* basecurve1;
@@ -565,16 +572,18 @@ namespace cs296
       }
     } 
     //pulley guide 2
-    /*!
-      The Objects defined for the above system are : 
-          "curveEdgeshape" {type="b2EdgeShape", "Set()" used to set end-points in each iteration according to the curve}, 
-          "curveDef" {type="b2BodyDef", type="b2_dynamicBody", defines a body-object}, 
-          "basecurve1" {pointer of type="b2Body" , assigned a body each iteration, created by passing "curveDef" to "m_world->CreateBody()"} 
-          "lowrest" {type="b2FixtureDef", its a fixture defined each iteration, assigned : shape = "curveEdgeShape", density=0, friction=3, restitution=-0.8}
-      Here the end points of the edge "curveEdgeShape" are set every iteration and (x,y) are updated each iteration so that a smooth curve is obtained .
+    /*!<h3>Curved guiding surface, below the first guiding surface</h3>
+    <p>The falling train of spheres are guided towards open box1 where they are collected one by one .<br/>
+      The curve is constructed using multiple small edges/lines to give a approximted curve with restitution=0 so that the direction change is uniform.<br/> 
+      Here is a description of objects defined for this system :
+          "curveEdgeshape" : type <b>b2EdgeShape</b>, "Set()" used to set end-points in each iteration according to the curve .<br/>
+          "curveDef" : type <b>b2BodyDef</b>, type=<b>b2_dynamicBody</b>, defines a body-object .<br/> 
+          "basecurve1" : pointer of type <b>b2Body</b> , assigned a body each iteration, created by passing "curveDef" to <b>m_world->CreateBody()</b> .<br/>
+          "lowrest"  : type <b>b2FixtureDef</b>, its a fixture defined each iteration, assigned : shape = "curveEdgeShape", density=0, friction=3, restitution=-0.8 .<br/>
+      Here the end points of the edge "curveEdgeShape" are set every iteration and (x,y) are updated each iteration so that a smooth curve is obtained .<br/>
       The body-object "curveDef" and fixture "lowrest" are assigned to the body "basecurve1" each iteration, basically adding a small line,
-           with slightly different slope and length with end points:(x,y) and [x+(i+2)*0.3 , y-(9-i)*0.1], so that a smooth curve is obtained 
-      The curve is formed using 11 lines.
+           with slightly different slope and length with end points:(x,y) and [x+(i+2)*0.3 , y-(9-i)*0.1], so that a smooth curve is obtained .<br/>
+      The curve is formed using 11 lines. <br/></p>
     */
     
     {
@@ -598,26 +607,31 @@ namespace cs296
       }
     }
     
-    //platform to hold the heavy ball
-    /*!
-      The Objects defined for the above system are : 
-          "shape" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (4.4,0.35) }, 
-          "surface" {type="b2FixtureDef", defines a fixture with attributes : shape="shape", density=0.0, friction=0.2, restitution=-1.0}         
-          "bd" {type="b2BodyDef", defines a body-object with position(27.6, 14.4)}, 
-          "shape2" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (0.4,2.90) }, 
-          "heavyplank" {type="b2FixtureDef", defines a fixture with attributes : shape="shape2", density=500.0, friction=100.0, restitution=0.0}
-          "bd2" {type="b2BodyDef", type="b2_dynamicBody", defines a body-object with position(27.6, 22.4)},          
-          "hplank" {pointer of type="b2Body" , assigned the body created by passing "bd2" to "m_world->CreateBody()"} 
-          "circleShape" {type="b2CircleShape", defines a shape of type circle and radius="0.2"}, 
-          "bd3" {type="b2BodyDef", type="b2_dynamicBody", defines a body-object with position(27.6, 22.4)},  
-          "body2" {pointer of type="b2Body" , assigned the body created by passing "bd3" to "m_world->CreateBody()"} 
-          "ballfd" {type="b2FixtureDef", defines a fixture with attributes : shape="circleShape", density=38.0, friction=0.0, restitution=1.0}
-          "jointDef" {type="b2RevoluteJointDef", its a revolute joint with attributesa as : bodyA="hplank", bodyB="body2", 
-              {for hplank}localAnchorA=(0.0, 4.5) , {for body2}localAnchorB=(0.0, 0.0) , {collision between connected bodies allowing flag} collisionConnected=false}
-      The body defined by "bd" is passed to the "m_world->CreateBody" whose result is assigned to "b2Body" type object "ground" .
-      Next, the fixture "surface" is also fixed to the "ground" body.
-      The Fixture "heavyplank" is attached to the body "hplank" object and the Fixture "ballfd" is attached to the body "body2" .
-      Finally the motor-driven system with revolute-joint  is created by passing "jointDef" to m_world->CreateJoint() .
+      //platform to hold the heavy ball
+      /*!<h3> Heavy vertical Platform plus Heavy horizontal plank system , lying to the right </h3>
+    <p>
+      The heavy vertical platform is hinged with a small circle above it, about which it can move. <br/>
+      Both are joined using a revolute joint .<br/>
+      Teh heavy horizontal plank is fixed and lies just below the vertical plank.<br/> 
+      Here is a description of objects defined for this system :
+          "shape" : type <b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (4.4,0.35) .<br/>
+          "surface" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="shape", density=0.0, friction=0.2, restitution=-1.0 .<br/>        
+          "bd" : type <b>b2BodyDef</b>, defines a body-object with position(27.6, 14.4) .<br/>
+          "shape2" : type <b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (0.4,2.90) .<br/> 
+          "heavyplank" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="shape2", density=500.0, friction=100.0, restitution=0.0 .<br/>
+          "bd2" : type <b>b2BodyDef</b>, type=<b>b2_dynamicBody</b>, defines a body-object with position(27.6, 22.4) .<br/>          
+          "hplank" : pointer of type <b>b2Body</b> , assigned the body created by passing "bd2" to <b>m_world->CreateBody()</b> .<br/>
+          "circleShape" : type <b>b2CircleShape</b>, defines a shape of type circle and radius="0.2" .<br/>
+          "bd3" : type <b>b2BodyDef</b>, type=<b>b2_dynamicBody</b>, defines a body-object with position(27.6, 22.4) .<br/>  
+          "body2" : pointer of type <b>b2Body</b> , assigned the body created by passing "bd3" to <b>m_world->CreateBody()</b> .<br/>
+          "ballfd" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="circleShape", density=38.0, friction=0.0, restitution=1.0 .<br/>
+          "jointDef" : type <b>b2RevoluteJointDef</b>, its a revolute joint with attributesa as : bodyA="hplank", bodyB="body2" .<br/>
+              {for hplank}localAnchorA=(0.0, 4.5) , {for body2}localAnchorB=(0.0, 0.0) , {collision between connected bodies allowing flag} collisionConnected=false .<br/>
+      The body defined by "bd" is passed to the "m_world->CreateBody" whose result is assigned to <b>b2Body</b> type object "ground" .<br/>
+      Next, the fixture "surface" is also fixed to the "ground" body.<br/>
+      The Fixture "heavyplank" is attached to the body "hplank" object and the Fixture "ballfd" is attached to the body "body2" .<br/>
+      Finally the motor-driven system with revolute-joint  is created by passing "jointDef" to m_world->CreateJoint() .<br/>
+      </p>
     */
     {
 	  b2PolygonShape shape;
@@ -650,7 +664,7 @@ namespace cs296
       hplank->CreateFixture(&heavyplank);
       
       b2CircleShape circleShape;
-	  circleShape.m_radius = 0.2;  
+	    circleShape.m_radius = 0.2;  
       b2BodyDef bd3;
       bd3.position.Set(27.6f, 22.4f);
       b2Body* body2 = m_world->CreateBody(&bd3);
@@ -677,16 +691,20 @@ namespace cs296
       
     }
     //heavy ball guide to its resting place
-    /*!
-      The Objects defined for the above system are : 
-          "curveEdgeshape" {type="b2EdgeShape", "Set()" used to set end-points in each iteration according to the curve}, 
-          "curveDef" {type="b2BodyDef", type="b2_dynamicBody", defines a body-object}, 
-          "heavyguide" {pointer of type="b2Body" , assigned a body each iteration, created by passing "curveDef" to "m_world->CreateBody()"} 
-          "lowrest" {type="b2FixtureDef", its a fixture defined each iteration, assigned : shape = "curveEdgeShape", density=700, friction=3, restitution=-0.0}
-      Here the end points of the edge "curveEdgeShape" are set every iteration and (x,y) are updated each iteration so that a smooth curve is obtained .
+    /*<h3>Curved surface , above the right open box of pulley .</h3>
+    <p>
+      This curved surface is a guide to the heavy sphere which starts from the top. <br/>
+      It guides the sphere to the heavy vertical plank in front of its lower end .<br/> 
+      Here is a description of objects defined for this system :
+          "curveEdgeshape" : type <b>b2EdgeShape</b>, "Set()" used to set end-points in each iteration according to the curve . <br/>
+          "curveDef" : type <b>b2BodyDef</b>, type=<b>b2_dynamicBody</b>, defines a body-object . <br/>
+          "heavyguide" : pointer of type <b>b2Body</b> , assigned a body each iteration, created by passing "curveDef" to <b>m_world->CreateBody()</b> .<br/>
+          "lowrest" : type <b>b2FixtureDef</b>, its a fixture defined each iteration, assigned : shape = "curveEdgeShape", density=700, friction=3, restitution=-0.0 .<br/>
+      Here the end points of the edge "curveEdgeShape" are set every iteration and (x,y) are updated each iteration so that a smooth curve is obtained .<br/>
       The body-object "curveDef" and fixture "lowrest" are assigned to the body "heavyguide" each iteration, basically adding a small line,
-           with slightly different slope and length with end points:(x,y) and [x+(i+2)*0.12 , y-(9-i)*0.1], so that a smooth curve is obtained 
-      The curve is formed using 10 lines.
+           with slightly different slope and length with end points:(x,y) and [x+(i+2)*0.12 , y-(9-i)*0.1], so that a smooth curve is obtained .<br/>
+      The curve is formed using 10 lines.<br/>
+      </p>
     */
     {
       b2Body* heavyguide;
@@ -710,20 +728,25 @@ namespace cs296
     }
     
     //
-    /*!
-      The Objects defined for the above system are : 
-          "shape" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (0.2,8.5) },          
-          "bd" {type="b2BodyDef", defines a body-object with position(33.0, 9.0)}, 
-          "fd" {type="b2FixtureDef", defines a fixture with attributes : shape="shape", density=10.0},
-          "body1" {pointer of type="b2Body" , its assigned the body, created by passing "bd" to "m_world->CreateBody()"}
-          "circleShape" {type="b2CircleShape", defines a shape type circle and radius="0.2"},
-          "bd2" {type="b2BodyDef", type="b2_dynamicBody", defines a body-object with position(33.0, 9.0)},
-          "body2" {pointer of type="b2Body" , assigned the body created by passing "bd2" to "m_world->CreateBody()"} 
-          "ballfd" {type="b2FixtureDef", defines a fixture with attributes : shape="circleShape", density=38.0, friction=0.0, restitution=1.0}
-          "jointDef" {type="b2RevoluteJointDef", its a revolute joint with attributesa as : bodyA="body1", bodyB="body2", 
-              {for body1}localAnchorA=(0.0, 0.0) , {for body2}localAnchorB=(0.0, 0.0) , {collision between connected bodies allowing flag} collisionConnected=false}
-      The fixture "fd" is attached to the body corresponding to "body1" and the Fixture "ballfd" is attached to the body corresponding to "body2" .
-      Finally the motor-driven system with revolute-joint  is created by passing "jointDef" to m_world->CreateJoint() .
+    /*!sabse right mein jo hinged plank hai
+    <h3> Rightmost plank, hinged at its centre .</h3>
+    <p>
+    This system consists of a vertical plank hinged with a small circle at its centre, thus it can rotate about its centre .<br/>
+    The plank is disturbed when a small sphere the train of spheres hits its lower end and it in turn hits the biggest sphere .<br/>
+      Here is a description of objects defined for this system :
+          "shape" : type <b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (0.2,8.5) .<br/>        
+          "bd" : type <b>b2BodyDef</b>, defines a body-object with position(33.0, 9.0) .<br/>
+          "fd" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="shape", density=10.0 .<br/>
+          "body1" : pointer of type <b>b2Body</b> , its assigned the body, created by passing "bd" to <b>m_world->CreateBody()</b> .<br/>
+          "circleShape" : type <b>b2CircleShape</b>, defines a shape type circle and radius="0.2" .<br/>
+          "bd2" : type <b>b2BodyDef</b>, type=<b>b2_dynamicBody</b>, defines a body-object with position(33.0, 9.0) .<br/>
+          "body2" : pointer of type <b>b2Body</b> , assigned the body created by passing "bd2" to <b>m_world->CreateBody()</b>  . <br/>
+          "ballfd" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="circleShape", density=38.0, friction=0.0, restitution=1.0 .<br/>
+          "jointDef" : type <b>b2RevoluteJointDef</b>, its a revolute joint with attributesa as : bodyA="body1", bodyB="body2" .<br/>
+              anchor for body1 : localAnchorA=(0.0, 0.0) , anchor for body2 : localAnchorB=(0.0, 0.0) , collision flag : collisionConnected=false .<br/>
+      The fixture "fd" is attached to the body corresponding to "body1" and the Fixture "ballfd" is attached to the body corresponding to "body2" .<br/>
+      Finally the motor-driven system with revolute-joint  is created by passing "jointDef" to m_world->CreateJoint() .<br/>
+      </p>
     */
 
 	{
@@ -763,14 +786,19 @@ namespace cs296
   }
 
 	//
-  /*!
-    The Objects defined for the above system are : 
-          "circle" {type="b2CircleShape", defines a shape of type circle and radius="1.3"},          
-          "ballbd" {type="b2BodyDef", defines a body-object with position(31.0, 19.0)}, 
-          "ballfd" {type="b2FixtureDef", defines a fixture with attributes : shape="shape", density=10.0},
-          "spherebody" {pointer of type="b2Body",body-type="b2_dynamicBody" , its assigned the dynamic body, created by passing "ballbd" to "m_world->CreateBody()"}
-    The Fixture "ballfd" is attached to the body corresponding to "spherebody" .
-    
+  /*! Jo sphere sabse right mein sabse bada hai 
+  <h3> Largest sphere on the Horizontal-Plank plus Hinged Vertical-Plank system </h3>
+  <p>
+    This is the largest sphere in the defined world, it lies to the right of the vertical plank that is just over the horizontal plank.<br/>
+    This sphere basically is hit by the rightmost hinged plank nearly at the same time when the medium size sphere from top hits the vertical plank.<br/>
+    This in turn reflects the medium sized sphere . <br/>
+    Here is a description of objects defined for this system : 
+          "circle" : type <b>b2CircleShape</b>, defines a shape of type circle and radius="1.3" . <br/>         
+          "ballbd" : type <b>b2BodyDef</b>, defines a body-object with position(31.0, 19.0) .<br/>
+          "ballfd" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="shape", density=10.0 .<br/>
+          "spherebody" : pointer of type: <b>b2Body</b>,body-type <b>b2_dynamicBody</b> , its assigned the dynamic body, created by passing "ballbd" to <b>m_world->CreateBody()</b> .<br/>
+    The Fixture "ballfd" is attached to the body corresponding to "spherebody" . <br/>
+    </p>
   */
 
   {
@@ -791,8 +819,8 @@ namespace cs296
 	}
 
   ///
-  /*!
-    Variable "bd1", type b2BodyDef is to pass both the box and the bar (on opposite sides of pulley) to the world object.
+  /*!<h3> The pulley system </h3>
+    Variable "bd1", type b2BodyDef is to pass both the box1 and the box2 (on opposite sides of pulley) to the world object.
     The position of the open box is set to (7.3, 5).
     The fixedRotation variable is set to true for restricting the rotation of the open box and bar.
   */
@@ -803,19 +831,22 @@ namespace cs296
       bd1->position.Set(7.3,5);
       bd1->fixedRotation = true;
       
-      //The open box
+      //The open box 1
     /*!
-
-      The Objects defined for the above system are : 
-          "bs1" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (0.2,8.5), centre : (-0.2,-1.5), tilt angle : 0 },   
-          "fd1d" {type="b2FixtureDef", defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0},
-          "bs2" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (0.2,1.4), centre : (4.5,0), tilt angle : 0 },
-          "fd2" {type="b2FixtureDef", defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0},          
-          "bs3" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (0.2,1.4), centre : (-4.9,0), tilt angle : 0 },
-          "fd3" {type="b2FixtureDef", defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0},          
-          "box1" {pointer of type="b2Body" , its assigned the body, created by passing "bd1"(defined above) to "m_world->CreateBody()"}
-      All the three Fixtures "fd1"(horizontal wall), "fd2"(vertical wall) and "fd3"(vertical wall),
-           representing the three walls of the first box are attached to the body object "box1" .
+    <h4>Open box 1, to the left of pulley .</h4>
+    <p>
+      This open box is constructed using three walls : one horizontal and two vertical walls, its open from the top .<br/>
+      It is used to collect the small spheres that are guided by the secong guiding curve . <br/>
+      Here is a description of objects defined for this system : <br/>
+          "bs1" : type <b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (0.2,8.5), centre : (-0.2,-1.5), tilt angle : 0 .<br/>   
+          "fd1d" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0 .<br/>
+          "bs2" : type <b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (0.2,1.4), centre : (4.5,0), tilt angle : 0 . <br/>
+          "fd2" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0 .<br/>      
+          "bs3" : type <b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (0.2,1.4), centre : (-4.9,0), tilt angle : 0  .<br/>
+          "fd3" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0 .<br/>          
+          "box1" {pointer of type=<b>b2Body</b> , its assigned the body, created by passing "bd1"(defined above) to <b>m_world->CreateBody()</b> .<br/>
+      All the three Fixtures "fd1"(horizontal wall), "fd2"(vertical wall) and "fd3"(vertical wall) 
+           representing the three walls of the first box are attached to the body object "box1" .<br/>
 
     */
 
@@ -851,20 +882,25 @@ namespace cs296
 
       //The box2
     /*!
-       Variable "bd2", type b2BodyDef is to pass both the boxes (on opposite sides of pulley) to the world object.
+       <p>Variable "bd2", type b2BodyDef is to pass both the boxes (on opposite sides of pulley) to the world object.
       The position of the open box is set to (20, 10).
-      The fixedRotation variable is set to true for restricting the rotation of the open box and bar.
-
-      The Objects defined for the above system are : 
-          "bs4" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (2,0.2), centre : (0,-1.9), tilt angle : 0 },   
-          "fd4" {type="b2FixtureDef", defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0},
-          "bs5" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (0.2,2), centre : (2.0,0), tilt angle : 0 },
-          "fd5" {type="b2FixtureDef", defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0},          
-          "bs6" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (0.2,2), centre : (-2.0,0), tilt angle : 0 },
-          "fd6" {type="b2FixtureDef", defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0},          
-          "box2" {pointer of type="b2Body" , its assigned the body, created by passing "bd1"(defined above) to "m_world->CreateBody()"}
+      The fixedRotation variable is set to true for restricting the rotation of the open box1 and box2.
+      </p>
+      <h4> The Open Box2, lying to the right of pulley . </h4><br/>
+      <p>
+      This open box is used to collect the big sized ball lying over the small platform, just above the box .<br/>
+      When the big sized ball is hit by the medium sized ball from the right, it falls into this box .<br/> 
+      Here is a description of objects defined for this system :<br/>
+          "bs4" : type <b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (2,0.2), centre : (0,-1.9), tilt angle : 0 .<br/>
+          "fd4" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0 .<br/>
+          "bs5" : type <b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (0.2,2), centre : (2.0,0), tilt angle : 0 . <br/> 
+          "fd5" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0 .<br/>        
+          "bs6" : type <b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (0.2,2), centre : (-2.0,0), tilt angle : 0  .<br/>
+          "fd6" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0 .<br/>       
+          "box2" : pointer of type=<b>b2Body</b> , its assigned the body, created by passing "bd1"(defined above) to <b>m_world->CreateBody()</b> .<br/>
       All the three Fixtures "fd4"(horizontal wall), "fd5"(vertical wall) and "fd6"(vertical wall),
-           representing the three walls of the first box are attached to the body object "box2" .
+           representing the three walls of the first box are attached to the body object "box2" .<br/>
+           </p>
 
      */
 
@@ -900,13 +936,16 @@ namespace cs296
       
       //Vertical plank holds the second box from swinging .
 
-      /*!
-        The Objects defined for the above system are : 
-          "holder" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (0.2,1.6) },  
-          "bdxy" {type="b2BodyDef", defines a body-object with position(17.5, 8.6)}, 
-          "holderbox" {pointer of type="b2Body" , its assigned the body, created by passing "bdxy" to "m_world->CreateBody()"}
-
-          "fd4" {type="b2FixtureDef", defines a fixture with attributes : shape="bs1", density=110.0, friction=0.5,restitution=0},        
+      /*! right waali pulley ko left mein jaane se rokne ke liye
+      <h4> Right balancing fixed plank </h4>
+      <p>
+        This vertical plank restricts the right open box from swaying sideways when the big sized ball falls in it .<br/>
+        In this way it stabilizes the pullwy system. <br/>
+        Here is a description of objects defined for this system : 
+          "holder" : type <b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (0.2,1.6) .<br/>  
+          "bdxy" : type <b>b2BodyDef</b>, defines a body-object with position(17.5, 8.6)}, 
+          "holderbox" : pointer of type <b>b2Body</b> , its assigned the body, created by passing "bdxy" to <b>m_world->CreateBody()</b> .<br/>
+          </p>
       */
       b2PolygonShape holder;
       holder.SetAsBox(0.2f, 1.6f);
@@ -937,8 +976,15 @@ namespace cs296
       m_world->CreateJoint(myjoint);
     }
 
-    ///
-    
+    ///left waley pulley box ko girne se bachaane ke liye
+    /*!
+      <h4> Left balancing planks .</h4>
+      <p>
+      These two planks balance the left open box of the pulley system from making any random motion .<br/>
+      The horizontal plank of dimensions (2.0,0.25) stops the left box from going too low, this prevents any obstruction to the incoming spheres .<br/>
+      The vertical plank of dimensions (0.25, 1.0) does the same job as the right balancing plank did, it restrains the left box from swaying sideways .<br/>
+      </p>
+    */
 {
       b2PolygonShape shape;
       shape.SetAsBox(2.0f, 0.25f);
@@ -955,7 +1001,7 @@ namespace cs296
       ground->CreateFixture(&surface);
 }
 
-    //
+    // left waali pulley ko right jaane se bachaane ke liye
 
 {
       b2PolygonShape shape;
@@ -975,16 +1021,21 @@ namespace cs296
 
     //
 
-   /*! 
-    The Objects defined for the above system are : 
-          "curveEdgeshape" {type="b2EdgeShape", "Set()" used to set end-points in each iteration according to the curve}, 
-          "curveDef" {type="b2BodyDef", type="b2_dynamicBody", defines a body-object}, 
-          "basecurve1" {pointer of type="b2Body" , assigned a body each iteration, created by passing "curveDef" to "m_world->CreateBody()"} 
-          "lowrest" {type="b2FixtureDef", its a fixture defined each iteration, assigned : shape = "curveEdgeShape", density=0, friction=3, restitution=-0.8}
-      Here the end points of the edge "curveEdgeShape" are set every iteration and (x,y) are updated each iteration so that a smooth curve is obtained .
-      The body-object "curveDef" and fixture "lowrest" are assigned to the body "basecurve1" each iteration, basically adding a small line,
-           with slightly different slope and length with end points:(x,y) and [x+(i+2)*0.3 , y-(9-i)*0.1], so that a smooth curve is obtained 
+   /*! guided path for the ball from left
+   <h3> Curved guiding path , the leftmost curved path . </h3>
+   <p>
+    This path is used to guide a small sphere which after colliding with the revolving plank goes left . <br/>
+    The ball is then guided right to the bottom by this curved path . <br/>
+    Here is a description of objects defined for this system :
+          "curveEdgeshape" : type <b>b2EdgeShape</b>, "Set()" used to set end-points in each iteration according to the curve .<br/> 
+          "curveDef" : type <b>b2BodyDef</b>, type=<b>b2_dynamicBody</b>, defines a body-object .<br/>
+          "basecurve1" : pointer of type <b>b2Body</b> , assigned a body each iteration, created by passing "curveDef" to <b>m_world->CreateBody()</b> .<br/>
+          "lowrest" : type <b>b2FixtureDef</b>, its a fixture defined each iteration, assigned : shape = "curveEdgeShape", density=0, friction=3, restitution=-0.8 .<br/>
+      Here the end points of the edge "curveEdgeShape" are set every iteration and (x,y) are updated each iteration so that a smooth curve is obtained .<br/>
+      The body-object "curveDef" and fixture "lowrest" are assigned to the body "basecurve1" each iteration, basically adding a small line, 
+           with slightly different slope and length with end points:(x,y) and [x+(i+2)*0.3 , y-(9-i)*0.1], so that a smooth curve is obtained .<br/>
       The curve is formed using 11 lines.
+      </p>
     */
 {
       b2Body* basecurve1;
@@ -1008,18 +1059,24 @@ namespace cs296
 }
 
     //
-    /*!
-      The Objects defined for the above system are : 
-          "shape" {type="b2PolygonShape", "SetAsBox()" used to set dimensions to (1.0,0.35) },
-          "surface" {type="b2FixtureDef", defines a fixture with attributes : shape="shape", density=0.0, friction=0.2, restitution=0.1},
-          "bd" {type="b2BodyDef", defines a body-object with position(21.7, 13.4)},
-          "spherebody" {pointer of type="b2Body" , its assigned the body, created by passing "bd" to "m_world->CreateBody()"}
-          "circle" {type="b2CircleShape", defines a shape type circle and radius="1.0"},
-          "ballfd" {type="b2FixtureDef", defines a fixture with attributes : shape="circleShape", density=2000.0, friction=0.2, restitution=0.835}
-          "ballbd" {type="b2BodyDef", type="b2_dynamicBody", defines a body-object with position(21.7, 13.9)},
-      The body-object represented by "ground" is assigned object returned when object "bd" is passed to "m_world->CreateBody()" .
-      After that, the Fixture "surface" is also attached to the object represented by "ground" .
-      Finally the Fixture "ballfd" is attached to the body represented by "spherebody" .
+    /*! Finally jo ball right waaley box ke andar gir rahi hai aur uska chota sa plank
+    <h3> Small horizontal plank plus big ball system</h3>
+    <p>
+      This system consists of a big ball and a small horizontal plank .<br/>
+      The plank lies just above the right open box and the ball rests over the plank .<br/>
+      When the ball is hit by the medium ball from left it falls in the right open box .<br/>
+      Here is a description of objects defined for this system :
+          "shape" : type <b>b2PolygonShape</b>, <b>SetAsBox()</b> used to set dimensions to (1.0,0.35) .<br/>
+          "surface" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="shape", density=0.0, friction=0.2, restitution=0.1 .<br/>
+          "bd" : type <b>b2BodyDef</b>, defines a body-object with position(21.7, 13.4) .<br/>
+          "spherebody" : pointer of type <b>b2Body</b> , its assigned the body, created by passing "bd" to <b>m_world->CreateBody()</b> .<br/>
+          "circle" : type <b>b2CircleShape</b>, defines a shape type circle and radius="1.0" .<br/>
+          "ballfd" : type <b>b2FixtureDef</b>, defines a fixture with attributes : shape="circleShape", density=2000.0, friction=0.2, restitution=0.835 .<br/>
+          "ballbd" : type <b>b2BodyDef</b>, type <b>b2_dynamicBody</b>, defines a body-object with position(21.7, 13.9) .<br/>
+      The body-object represented by "ground" is assigned object returned when object "bd" is passed to <b>m_world->CreateBody()</b> .<br/>
+      After that, the Fixture "surface" is also attached to the object represented by "ground" .<br/>
+      Finally the Fixture "ballfd" is attached to the body represented by "spherebody" .<br/>
+      </p>
 
     */
 {
